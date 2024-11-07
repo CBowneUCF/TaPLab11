@@ -101,5 +101,27 @@ public class InventoryManager : MonoBehaviour
         return smaller + 1;
     }
 
-
+    public void AddItemToInventory(int id, string name, int value)
+    {
+        items.Add(new InventoryItem(id, name, value));
+        //Constructor is included in InventoryItem in the assignment Submission
+    }
+    public int CalculateTotalInventoryValue()
+    {
+        int total = 0;
+        for (int i = 0; i < items.Count; i++)
+        {
+            total += items[i].value;
+        }
+        return total;
+    }
+    public List<InventoryItem> FilterItemsByValueRange(int minValue, int maxValue)
+    {
+        if (minValue > maxValue) return null;
+        List<InventoryItem> result = new(items.Count);
+        for (int i = 0; i < items.Count; i++) 
+            if (items[i].value >= minValue && items[i].value <= maxValue)
+                result.Add(items[i]);
+        return result;
+    }
 }
