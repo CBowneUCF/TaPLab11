@@ -58,9 +58,12 @@ public class InventoryManager : MonoBehaviour
         {
             return BinarySearchByID(id, items.GetRange(0, inv.Length/2).ToArray());
         }
-        else
+        else  if (id > inv[mid].ID)
         {
             return BinarySearchByID(id, items.GetRange(mid+1, inv.Length / 2).ToArray());
+        }else
+        {
+            return null;
         }
     }
 
@@ -101,5 +104,6 @@ public class InventoryManager : MonoBehaviour
         return smaller + 1;
     }
 
+   
 
 }
